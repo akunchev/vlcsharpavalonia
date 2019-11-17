@@ -6,9 +6,9 @@ using System.Reactive.Linq;
 
 namespace LibVLCSharp.Avalonia.Sample
 {
-    public class Example2 : Window
+    public class Example4 : Window
     {
-        public Example2()
+        public Example4()
         {
             this.InitializeComponent();
             //Renderer.DrawFps = true;

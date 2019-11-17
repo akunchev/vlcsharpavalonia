@@ -22,6 +22,18 @@ namespace LibVLCSharp.Avalonia.Sample
                 w.Show();
             };
 
+            this.Get<Button>("example3").Click += (s, e) =>
+            {
+                var w = new Example3();
+                w.Show();
+            };
+
+            this.Get<Button>("example4").Click += (s, e) =>
+            {
+                var w = new Example4();
+                w.Show();
+            };
+
 #if DEBUG
             this.AttachDevTools();
 #endif

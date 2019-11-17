@@ -4,13 +4,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:v="clr-namespace:LibVLCSharp.Avalonia;assembly=LibVLCSharp.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="LibVLCSharp.Avalonia.Sample.Example1"
-        Title="Example1" Height="450" Width="800">
-  <v:VideoView x:Name="VideoView">
+        x:Class="LibVLCSharp.Avalonia.Sample.Example3"
+        Title="Example3 (VLC default rendering)" Height="450" Width="800">
+  <v:NativeVideoView x:Name="VideoView">
     <StackPanel Orientation="Horizontal" x:Name="test" Spacing="10" Margin="2">
       <Button Content="PLAY" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="PlayButton_Click" />
       <Button Content="STOP" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="StopButton_Click" />
       <Button Content="Pause" Height="25" Width="50" VerticalAlignment="Bottom" HorizontalAlignment="Left" Click="PauseButton_Click" />
     </StackPanel>
-  </v:VideoView>
+  </v:NativeVideoView>
 </Window>

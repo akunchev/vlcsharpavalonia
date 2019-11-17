@@ -15,9 +15,9 @@ using System.Windows.Input;
 
 namespace LibVLCSharp.Avalonia.Sample
 {
-    public class Example2ViewModel : ReactiveObject, IDisposable
+    public class ExamplePlayerViewModel : ReactiveObject, IDisposable
     {
-        static Example2ViewModel()
+        static ExamplePlayerViewModel()
         {
             LoadPlayed();
         }
@@ -41,7 +41,7 @@ namespace LibVLCSharp.Avalonia.Sample
         private CompositeDisposable _subscriptions;
         private static AvaloniaList<string> _played = new AvaloniaList<string>();
 
-        public Example2ViewModel(Window window)
+        public ExamplePlayerViewModel(Window window)
         {
             _libVLC = new LibVLC();
             MediaPlayer = new MediaPlayer(_libVLC);

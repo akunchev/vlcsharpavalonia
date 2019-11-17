@@ -16,4 +16,16 @@
       </ControlTemplate>
     </Setter>
   </Style>
+  <Style Selector="local|NativeVideoView">
+    <Setter Property="Background" Value="Black" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <!--<Image Name="PART_RenderImage" />-->
+          <Panel Name="PART_PlayerHost" Background="Transparent" IsVisible="{TemplateBinding IsVisible}" />
+          <!--<ContentPresenter Content="{TemplateBinding Content}" />-->
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
 </Styles>

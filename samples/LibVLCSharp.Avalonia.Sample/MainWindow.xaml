@@ -7,7 +7,9 @@
         x:Class="LibVLCSharp.Avalonia.Sample.MainWindow"
         Title="LibVLCSharp.Avalonia.Sample" Height="450" Width="800">
   <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20">
-    <Button x:Name="example1" Content="Example 1"  Width="100"/>
-    <Button x:Name="example2" Content="Example 2"  Width="100"/>
+    <Button x:Name="example1" Content="Example 1"  Width="300"/>
+    <Button x:Name="example2" Content="Example 2"  Width="300"/>
+    <Button x:Name="example3" Content="Example 3 (VLC default rendering)"  Width="300"/>
+    <Button x:Name="example4" Content="Example 4 (VLC default rendering)"  Width="300"/>
   </StackPanel>
 </Window>
