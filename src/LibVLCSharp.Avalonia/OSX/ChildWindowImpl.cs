@@ -4,7 +4,9 @@ using Avalonia.Native;
 using Avalonia.Native.Interop;
 using Avalonia.Platform;
 using MonoMac.AppKit;
+using MonoMac.CoreGraphics;
 using System;
+using System.Linq;
 
 namespace LibVLCSharp.Avalonia.OSX
 {
@@ -33,7 +35,16 @@ namespace LibVLCSharp.Avalonia.OSX
                     _parent = (WindowImpl)value;
                     _avnParent = _parent.Native;
                     _parentHandle = (IntPtr)_avnParent;
-                    _nsWndParent = new NSWindow(_parentHandle);
+                    var h1 = _avnParent.NativePointer;
+                    try
+                    {
+                        //TODO: find a way to map
+                       _nsWndParent = NSApplication.SharedApplication.Windows.Last();
+                    // _nsWndParent = new NSWindow(_parentHandle);
+                    }
+                    catch(Exception e)
+                    {
+                    }
                 }
             }
         }
@@ -73,13 +84,11 @@ namespace LibVLCSharp.Avalonia.OSX
 
             _factory = factory;
             //_opts = opts;
-            using (var e = new WindowBaseEvents(this))
-            {
-                Native = new IAvnWindowBase(_nsView.Handle);
-                Init(Native, factory.CreateScreens());
-            }
-
-            Init(Native, _factory.CreateScreens());
+            //using (var e = new WindowBaseEvents(this))
+            //{
+            //    Native = new IAvnWindowBase(_nsView.Handle);
+            //    Init(Native, factory.CreateScreens());
+            //}
 
             Handle = new PlatformHandle(_nsView.Handle, "NSView");
         }
@@ -92,6 +101,23 @@ namespace LibVLCSharp.Avalonia.OSX
         public void Move(PixelPoint point)
         {
             // Position = point;
+            _nsView.SetFrameOrigin(new CGPoint(point.X, point.Y));
+        }
+
+        public new void Resize(Size clientSize)
+        {
+            // _nsView.Frame = new MonoMac.CoreGraphics.CGRect(0, 0, ClientSize.Width, ClientSize.Height);
+            _nsView.SetFrameSize(new CGSize(ClientSize.Width, ClientSize.Height));
+        }
+
+        public new void Show()
+        {
+            _nsView.Hidden = false;
+        }
+
+        public new void Hide()
+        {
+            _nsView.Hidden = true;
         }
 
         public bool EnableTransparency(bool enable, Color? tranparencyColor = null)

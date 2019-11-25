@@ -2,6 +2,7 @@
 using Avalonia.Controls;
 using Avalonia.Logging.Serilog;
 using Avalonia.ReactiveUI;
+using MonoMac.AppKit;
 
 namespace LibVLCSharp.Avalonia.Sample
 {
@@ -27,6 +28,14 @@ namespace LibVLCSharp.Avalonia.Sample
         // container, etc.
         private static void AppMain(Application app, string[] args)
         {
+            NSApplication.Init();
+            //
+            var sa = MonoMac.ObjCRuntime.Selector.GetHandle("sharedApplication");
+
+            
+           // var nsapp1 = new NSApplication(sa);
+           // var app = new 
+            var nsapp = NSApplication.SharedApplication;
             app.Run(new MainWindow());
         }
     }
