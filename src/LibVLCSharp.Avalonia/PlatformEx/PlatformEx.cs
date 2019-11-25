@@ -14,6 +14,11 @@ namespace LibVLCSharp.Avalonia
         public IChildWindowImpl CreateChildWindow(ITopLevelImpl parent) => Win.ChildWindowImpl.Create(parent);
     }
 
+    internal class OSXPlatformEx : IPlatformEx
+    {
+        public IChildWindowImpl CreateChildWindow(ITopLevelImpl parent) => OSX.ChildWindowImpl.Create(parent);
+    }
+
     public static class PlatformEx
     {
         public static IPlatformEx Current => AvaloniaLocator.Current.GetService<IPlatformEx>();
@@ -24,6 +29,10 @@ namespace LibVLCSharp.Avalonia
             if (platform.OperatingSystem == OperatingSystemType.WinNT)
             {
                 AvaloniaLocator.CurrentMutable.Bind<IPlatformEx>().ToConstant(new Win32PlatformEx());
+            }
+            else if(platform.OperatingSystem == OperatingSystemType.OSX)
+            {
+                AvaloniaLocator.CurrentMutable.Bind<IPlatformEx>().ToConstant(new OSXPlatformEx());
             }
             else
             {

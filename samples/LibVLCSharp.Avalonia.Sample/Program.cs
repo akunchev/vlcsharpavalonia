@@ -20,7 +20,7 @@ namespace LibVLCSharp.Avalonia.Sample
                 .UseReactiveUI()
                 //.With(new AvaloniaNativePlatformOptions() { UseDeferredRendering = false })
                 //.With(new Win32PlatformOptions() { UseDeferredRendering = false }) //with defered rendering false look like it's working slightly better
-                .UseVLCSharp()
+               // .UseVLCSharp()
                 .LogToDebug();
 
         // Your application's entry point. Here you can initialize your MVVM framework, DI

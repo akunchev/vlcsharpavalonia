@@ -18,10 +18,13 @@ namespace LibVLCSharp.Avalonia
                 if (_overlayChild != value)
                 {
                     _overlayChild = value;
-                    if (value != null)
+                    if (_overlayChild != null)
                     {
-                        EnsureOverPlayerCreated();
-                        _overplayerControl.Content = _overlayChild;
+                        if (this.PlatformImpl.SupportTransparency != TransparencySupport.Nope)
+                        {
+                            EnsureOverPlayerCreated();
+                            _overplayerControl.Content = _overlayChild;
+                        }
                     }
                     else if (_overplayerControl != null)
                     {
