@@ -19,7 +19,7 @@ namespace LibVLCSharp.Avalonia.Sample
                 .UsePlatformDetect()
                 //.UseDirect2D1()
                 .UseReactiveUI()
-                //.With(new AvaloniaNativePlatformOptions() { UseDeferredRendering = false })
+                .With(new AvaloniaNativePlatformOptions() { UseDeferredRendering = false, UseGpu = false })
                 //.With(new Win32PlatformOptions() { UseDeferredRendering = false }) //with defered rendering false look like it's working slightly better
                // .UseVLCSharp()
                 .LogToDebug();
@@ -29,12 +29,7 @@ namespace LibVLCSharp.Avalonia.Sample
         private static void AppMain(Application app, string[] args)
         {
             NSApplication.Init();
-            //
-            var sa = MonoMac.ObjCRuntime.Selector.GetHandle("sharedApplication");
 
-            
-           // var nsapp1 = new NSApplication(sa);
-           // var app = new 
             var nsapp = NSApplication.SharedApplication;
             app.Run(new MainWindow());
         }

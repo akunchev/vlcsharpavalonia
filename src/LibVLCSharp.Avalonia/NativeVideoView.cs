@@ -70,7 +70,8 @@ namespace LibVLCSharp.Avalonia
             //newMediaPlayer.XWindow -> forlinux
             //newMediaPlayer.NsObject -> for mac
 
-            MediaPlayer.Hwnd = _native.VLCPlayerHandle;
+            //MediaPlayer.Hwnd = _native.VLCPlayerHandle;
+            MediaPlayer.NsObject = _native.VLCPlayerHandle;
         }
     }
 }
