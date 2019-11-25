@@ -18,8 +18,6 @@ namespace LibVLCSharp.Avalonia.OSX
         private IntPtr _parentHandle;
 
         private IAvaloniaNativeFactory _factory;
-        private static IAvaloniaNativeFactory _defaultFactory;
-        private static AvaloniaNativePlatformOptions _defaultOptions;
 
         public IAvnWindowBase Native { get; private set; }
 
@@ -51,23 +49,9 @@ namespace LibVLCSharp.Avalonia.OSX
 
         public event Action LostFocus;
 
-        public static ChildWindowImpl Create(ITopLevelImpl parent)
+        public static ChildWindowImpl Create(ITopLevelImpl parent, IAvaloniaNativeFactory factory, AvaloniaNativePlatformOptions opt)
         {
-            if (_defaultFactory == null)
-            {
-                //we don't ahve access to factory in any way so we can obtain it in a hacky way atm
-                var f = parent.GetType().GetField("_factory", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                _defaultFactory = (IAvaloniaNativeFactory)f.GetValue(parent);
-            }
-
-            if (_defaultOptions == null)
-            {
-                //we don't ahve access to factory in any way so we can obtain it in a hacky way atm
-                var f = parent.GetType().GetField("_opts", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                _defaultOptions = (AvaloniaNativePlatformOptions)f.GetValue(parent);
-            }
-
-            var r = new ChildWindowImpl(parent, _defaultFactory, _defaultOptions);
+            var r = new ChildWindowImpl(parent, factory, opt);
             return r;
         }
 
