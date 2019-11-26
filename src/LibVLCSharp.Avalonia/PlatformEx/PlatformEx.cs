@@ -1,4 +1,5 @@
 ﻿using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Native.Interop;
 using Avalonia.Platform;
 using System;
@@ -7,12 +8,12 @@ namespace LibVLCSharp.Avalonia
 {
     public interface IPlatformEx
     {
-        IChildWindowImpl CreateChildWindow(ITopLevelImpl parent);
+        IChildWindowImpl CreateChildWindow(TopLevel parent);
     }
 
     internal class Win32PlatformEx : IPlatformEx
     {
-        public IChildWindowImpl CreateChildWindow(ITopLevelImpl parent) => Win.ChildWindowImpl.Create(parent);
+        public IChildWindowImpl CreateChildWindow(TopLevel parent) => Win.ChildWindowImpl.Create(parent.PlatformImpl);
     }
 
     internal class OSXPlatformEx : IPlatformEx
@@ -20,8 +21,9 @@ namespace LibVLCSharp.Avalonia
         private IAvaloniaNativeFactory _defaultFactory;
         private AvaloniaNativePlatformOptions _defaultOptions;
 
-        public IChildWindowImpl CreateChildWindow(ITopLevelImpl parent)
+        public IChildWindowImpl CreateChildWindow(TopLevel parentT)
         {
+            var parent = parentT.PlatformImpl;
             if (_defaultFactory == null)
             {
                 //we don't ahve access to factory in any way so we can obtain it in a hacky way atm
@@ -37,7 +39,7 @@ namespace LibVLCSharp.Avalonia
             }
 
             // return   OSX.ChildWindowImpl.Create(parent, _defaultFactory, _defaultOptions);
-            return OSX.ChildWindowAsAvWindow.Create(parent, _defaultFactory, _defaultOptions);
+            return OSX.ChildWindowAsAvWindow.Create(parent, OSX.OSXUtils.From(parentT),  _defaultFactory, _defaultOptions);
         }
     }
 

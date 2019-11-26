@@ -34,10 +34,10 @@ namespace LibVLCSharp.Avalonia
 
                     if (PlatformImpl.SupportTransparency == TransparencySupport.Nope)
                     {
-                        throw new Exception("Platform doesn't support transparency!");
+                       // throw new Exception("Platform doesn't support transparency!");
                     }
 
-                    PlatformImpl.EnableTransparency(_isTransparent, OverlayTransparencyColor);
+                   // PlatformImpl.EnableTransparency(_isTransparent, OverlayTransparencyColor);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace LibVLCSharp.Avalonia
 
         public new IChildWindowImpl PlatformImpl => base.PlatformImpl as IChildWindowImpl;
 
-        public ChildWindow(TopLevel parentWnd, Control parentControl, bool isTransparent = false) : base(PlatformEx.Current.CreateChildWindow(parentWnd.PlatformImpl))
+        public ChildWindow(TopLevel parentWnd, Control parentControl, bool isTransparent = false) : base(PlatformEx.Current.CreateChildWindow(parentWnd))
         {
             ParentTopLevel = parentWnd;
             ParentControl = parentControl;
